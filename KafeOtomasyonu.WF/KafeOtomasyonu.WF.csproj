@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E6193F56-EAA9-41AF-B0AC-E0E8285C7FD6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KafeOtomasyonu.WF</RootNamespace>
+    <AssemblyName>KafeOtomasyonu.WF</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Adisyon.cs">
+      <DependentUpon>model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cafe.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cafe.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cafe.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cafe.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cafe.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Cafe.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="frmmasaEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmmasaEkle.Designer.cs">
+      <DependentUpon>frmmasaEkle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmmenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmmenu.Designer.cs">
+      <DependentUpon>frmmenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmodeme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmodeme.Designer.cs">
+      <DependentUpon>frmodeme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmodemeekleme.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmodemeekleme.Designer.cs">
+      <DependentUpon>frmodemeekleme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmpersonelperformansraporu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmpersonelperformansraporu.Designer.cs">
+      <DependentUpon>frmpersonelperformansraporu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmstokraporu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmstokraporu.Designer.cs">
+      <DependentUpon>frmstokraporu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmstoktakip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmstoktakip.Designer.cs">
+      <DependentUpon>frmstoktakip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmurunsatısraporu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmurunsatısraporu.Designer.cs">
+      <DependentUpon>frmurunsatısraporu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmkategori.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmkategori.Designer.cs">
+      <DependentUpon>frmkategori.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKullaniciGirisi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKullaniciGirisi.Designer.cs">
+      <DependentUpon>frmKullaniciGirisi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmayarlar.cs">
+      <SubType>Form</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="frmayarlar.Designer.cs">
+      <DependentUpon>frmayarlar.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="frmmasasatis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmmasasatis.Designer.cs">
+      <DependentUpon>frmmasasatis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmpersoneltanimlama.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmpersoneltanimlama.Designer.cs">
+      <DependentUpon>frmpersoneltanimlama.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmrapor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmrapor.Designer.cs">
+      <DependentUpon>frmrapor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmsiparis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmsiparis.Designer.cs">
+      <DependentUpon>frmsiparis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmuruntanimlama.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmuruntanimlama.Designer.cs">
+      <DependentUpon>frmuruntanimlama.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kategori.cs">
+      <DependentUpon>model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Kullanici.cs">
+      <DependentUpon>model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Masa.cs">
+      <DependentUpon>model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MasaTip.cs">
+      <DependentUpon>model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="menu.cs">
+      <DependentUpon>model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MiktarTur.cs">
+      <DependentUpon>model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="model1.cs">
+      <DependentUpon>model1.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="model1.Designer.cs">
+      <DependentUpon>model1.edmx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="OdemeTip.cs">
+      <DependentUpon>model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Siparis.cs">
+      <DependentUpon>model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="stok.cs">
+      <DependentUpon>model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Urun.cs">
+      <DependentUpon>model1.tt</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="frmmasaEkle.resx">
+      <DependentUpon>frmmasaEkle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmmenu.resx">
+      <DependentUpon>frmmenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmodeme.resx">
+      <DependentUpon>frmodeme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmodemeekleme.resx">
+      <DependentUpon>frmodemeekleme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmpersonelperformansraporu.resx">
+      <DependentUpon>frmpersonelperformansraporu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmstokraporu.resx">
+      <DependentUpon>frmstokraporu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmstoktakip.resx">
+      <DependentUpon>frmstoktakip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmurunsatısraporu.resx">
+      <DependentUpon>frmurunsatısraporu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmkategori.resx">
+      <DependentUpon>frmkategori.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKullaniciGirisi.resx">
+      <DependentUpon>frmKullaniciGirisi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmayarlar.resx">
+      <DependentUpon>frmayarlar.cs</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmmasasatis.resx">
+      <DependentUpon>frmmasasatis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmpersoneltanimlama.resx">
+      <DependentUpon>frmpersoneltanimlama.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmrapor.resx">
+      <DependentUpon>frmrapor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmsiparis.resx">
+      <DependentUpon>frmsiparis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmuruntanimlama.resx">
+      <DependentUpon>frmuruntanimlama.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EntityDeploy Include="Cafe.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Cafe.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Cafe.edmx.diagram">
+      <DependentUpon>Cafe.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\images.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Cafe.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Cafe.edmx</DependentUpon>
+      <LastGenOutput>Cafe.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Cafe.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Cafe.edmx</DependentUpon>
+      <LastGenOutput>Cafe.cs</LastGenOutput>
+    </Content>
+    <Content Include="model1.tt">
+      <DependentUpon>model1.edmx</DependentUpon>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>model1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

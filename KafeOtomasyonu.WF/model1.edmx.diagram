@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b6141b3ff2634bffa644206a0660d0ad" Name="Diagram1">
+        <EntityTypeShape EntityType="cafeVTModel.Adisyon" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="cafeVTModel.Kategori" Width="1.5" PointX="0.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="cafeVTModel.Kullanici" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cafeVTModel.Masa" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="cafeVTModel.MasaTip" Width="1.5" PointX="1.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="cafeVTModel.menu" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cafeVTModel.MiktarTur" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="cafeVTModel.OdemeTip" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="cafeVTModel.Siparis" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="cafeVTModel.stok" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="cafeVTModel.Urun" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <AssociationConnector Association="cafeVTModel.FK_Adisyon_Kullanici" ManuallyRouted="false" />
+        <AssociationConnector Association="cafeVTModel.FK_Adisyon_Kullanici1" ManuallyRouted="false" />
+        <AssociationConnector Association="cafeVTModel.FK_Adisyon_Masa" ManuallyRouted="false" />
+        <AssociationConnector Association="cafeVTModel.FK_Adisyon_Masa1" ManuallyRouted="false" />
+        <AssociationConnector Association="cafeVTModel.FK_Adisyon_OdemeTip" ManuallyRouted="false" />
+        <AssociationConnector Association="cafeVTModel.FK_Siparis_Adisyon" ManuallyRouted="false" />
+        <AssociationConnector Association="cafeVTModel.FK_Siparis_Adisyon1" ManuallyRouted="false" />
+        <AssociationConnector Association="cafeVTModel.FK_stok_Kategori" ManuallyRouted="false" />
+        <AssociationConnector Association="cafeVTModel.FK_Urun_Kategori" ManuallyRouted="false" />
+        <AssociationConnector Association="cafeVTModel.FK_Masa_MasaTip" ManuallyRouted="false" />
+        <AssociationConnector Association="cafeVTModel.FK_Siparis_MiktarTur" ManuallyRouted="false" />
+        <AssociationConnector Association="cafeVTModel.FK_Siparis_MiktarTur1" ManuallyRouted="false" />
+        <AssociationConnector Association="cafeVTModel.FK_Siparis_Urun" ManuallyRouted="false" />
+        <AssociationConnector Association="cafeVTModel.FK_Siparis_Urun1" ManuallyRouted="false" />
+        <AssociationConnector Association="cafeVTModel.FK_stok_Urun" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

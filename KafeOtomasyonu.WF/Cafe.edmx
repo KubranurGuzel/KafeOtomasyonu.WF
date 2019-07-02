@@ -1,0 +1,846 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="cafeVTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adisyon">
+          <Key>
+            <PropertyRef Name="adisyonID" />
+          </Key>
+          <Property Name="adisyonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="masaID" Type="int" Nullable="false" />
+          <Property Name="kullaniciID" Type="int" Nullable="false" />
+          <Property Name="tarih" Type="date" Nullable="false" />
+          <Property Name="ucret" Type="money" Nullable="false" />
+          <Property Name="odemetipID" Type="int" />
+          <Property Name="acikMi" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="kategoriID" />
+          </Key>
+          <Property Name="kategoriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ustKategoriID" Type="int" />
+          <Property Name="altKategoriID" Type="int" />
+          <Property Name="icerik" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kullanici">
+          <Key>
+            <PropertyRef Name="kullaniciID" />
+          </Key>
+          <Property Name="kullaniciID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adi" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="soyadi" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="eposta" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="sifre" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="yetki" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="kullaniciTC" Type="decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="adres" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cepTel" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Masa">
+          <Key>
+            <PropertyRef Name="masaID" />
+          </Key>
+          <Property Name="masaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kisiSayisi" Type="int" Nullable="false" />
+          <Property Name="ad" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="menuID" />
+          </Key>
+          <Property Name="menuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="menuAdi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="menuIcerik" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="menuFiyati" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MiktarTur">
+          <Key>
+            <PropertyRef Name="miktarTurID" />
+          </Key>
+          <Property Name="miktarTurID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="icerik" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OdemeTip">
+          <Key>
+            <PropertyRef Name="odemeTipID" />
+          </Key>
+          <Property Name="odemeTipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="icerik" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Siparis">
+          <Key>
+            <PropertyRef Name="siparisID" />
+          </Key>
+          <Property Name="siparisID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="adisyonID" Type="int" Nullable="false" />
+          <Property Name="urunID" Type="int" Nullable="false" />
+          <Property Name="miktar" Type="int" Nullable="false" />
+          <Property Name="miktarTurID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="stok">
+          <Key>
+            <PropertyRef Name="stokID" />
+          </Key>
+          <Property Name="stokID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategoriID" Type="int" Nullable="false" />
+          <Property Name="ustkategoriID" Type="int" Nullable="false" />
+          <Property Name="urunID" Type="int" Nullable="false" />
+          <Property Name="miktar" Type="decimal" Precision="10" Scale="5" Nullable="false" />
+          <Property Name="birim" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="birimFiyat" Type="money" Nullable="false" />
+          <Property Name="toplamFiyat" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Urun">
+          <Key>
+            <PropertyRef Name="urunID" />
+          </Key>
+          <Property Name="urunID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kategoriID" Type="int" Nullable="false" />
+          <Property Name="adi" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="fiyat" Type="money" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Adisyon_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Adisyon" Type="Self.Adisyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="kullaniciID" />
+            </Principal>
+            <Dependent Role="Adisyon">
+              <PropertyRef Name="kullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adisyon_Kullanici1">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Adisyon" Type="Self.Adisyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="kullaniciID" />
+            </Principal>
+            <Dependent Role="Adisyon">
+              <PropertyRef Name="kullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adisyon_Masa">
+          <End Role="Masa" Type="Self.Masa" Multiplicity="1" />
+          <End Role="Adisyon" Type="Self.Adisyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Masa">
+              <PropertyRef Name="masaID" />
+            </Principal>
+            <Dependent Role="Adisyon">
+              <PropertyRef Name="masaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adisyon_Masa1">
+          <End Role="Masa" Type="Self.Masa" Multiplicity="1" />
+          <End Role="Adisyon" Type="Self.Adisyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Masa">
+              <PropertyRef Name="masaID" />
+            </Principal>
+            <Dependent Role="Adisyon">
+              <PropertyRef Name="masaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adisyon_OdemeTip">
+          <End Role="OdemeTip" Type="Self.OdemeTip" Multiplicity="0..1" />
+          <End Role="Adisyon" Type="Self.Adisyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdemeTip">
+              <PropertyRef Name="odemeTipID" />
+            </Principal>
+            <Dependent Role="Adisyon">
+              <PropertyRef Name="odemetipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Adisyon">
+          <End Role="Adisyon" Type="Self.Adisyon" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adisyon">
+              <PropertyRef Name="adisyonID" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="adisyonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Adisyon1">
+          <End Role="Adisyon" Type="Self.Adisyon" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adisyon">
+              <PropertyRef Name="adisyonID" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="adisyonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_MiktarTur">
+          <End Role="MiktarTur" Type="Self.MiktarTur" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MiktarTur">
+              <PropertyRef Name="miktarTurID" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="miktarTurID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_MiktarTur1">
+          <End Role="MiktarTur" Type="Self.MiktarTur" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MiktarTur">
+              <PropertyRef Name="miktarTurID" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="miktarTurID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Urun1">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="adisyonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_Kategori">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+          <End Role="stok" Type="Self.stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="kategoriID" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="kategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="1" />
+          <End Role="stok" Type="Self.stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_Kategori">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="kategoriID" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="kategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="cafeVTModelStoreContainer">
+          <EntitySet Name="Adisyon" EntityType="Self.Adisyon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kategori" EntityType="Self.Kategori" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kullanici" EntityType="Self.Kullanici" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Masa" EntityType="Self.Masa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="menu" EntityType="Self.menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MiktarTur" EntityType="Self.MiktarTur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OdemeTip" EntityType="Self.OdemeTip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Siparis" EntityType="Self.Siparis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="stok" EntityType="Self.stok" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Urun" EntityType="Self.Urun" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Adisyon_Kullanici" Association="Self.FK_Adisyon_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Adisyon" EntitySet="Adisyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adisyon_Kullanici1" Association="Self.FK_Adisyon_Kullanici1">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Adisyon" EntitySet="Adisyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adisyon_Masa" Association="Self.FK_Adisyon_Masa">
+            <End Role="Masa" EntitySet="Masa" />
+            <End Role="Adisyon" EntitySet="Adisyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adisyon_Masa1" Association="Self.FK_Adisyon_Masa1">
+            <End Role="Masa" EntitySet="Masa" />
+            <End Role="Adisyon" EntitySet="Adisyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adisyon_OdemeTip" Association="Self.FK_Adisyon_OdemeTip">
+            <End Role="OdemeTip" EntitySet="OdemeTip" />
+            <End Role="Adisyon" EntitySet="Adisyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Adisyon" Association="Self.FK_Siparis_Adisyon">
+            <End Role="Adisyon" EntitySet="Adisyon" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Adisyon1" Association="Self.FK_Siparis_Adisyon1">
+            <End Role="Adisyon" EntitySet="Adisyon" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_MiktarTur" Association="Self.FK_Siparis_MiktarTur">
+            <End Role="MiktarTur" EntitySet="MiktarTur" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_MiktarTur1" Association="Self.FK_Siparis_MiktarTur1">
+            <End Role="MiktarTur" EntitySet="MiktarTur" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Urun" Association="Self.FK_Siparis_Urun">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Urun1" Association="Self.FK_Siparis_Urun1">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_Kategori" Association="Self.FK_stok_Kategori">
+            <End Role="Kategori" EntitySet="Kategori" />
+            <End Role="stok" EntitySet="stok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_Urun" Association="Self.FK_stok_Urun">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="stok" EntitySet="stok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_Kategori" Association="Self.FK_Urun_Kategori">
+            <End Role="Kategori" EntitySet="Kategori" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="cafeVTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Adisyon">
+          <Key>
+            <PropertyRef Name="adisyonID" />
+          </Key>
+          <Property Name="adisyonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="masaID" Type="Int32" Nullable="false" />
+          <Property Name="kullaniciID" Type="Int32" Nullable="false" />
+          <Property Name="tarih" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ucret" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="odemetipID" Type="Int32" />
+          <Property Name="acikMi" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Kullanici" Relationship="Self.FK_Adisyon_Kullanici" FromRole="Adisyon" ToRole="Kullanici" />
+          <NavigationProperty Name="Kullanici1" Relationship="Self.FK_Adisyon_Kullanici1" FromRole="Adisyon" ToRole="Kullanici" />
+          <NavigationProperty Name="Masa" Relationship="Self.FK_Adisyon_Masa" FromRole="Adisyon" ToRole="Masa" />
+          <NavigationProperty Name="Masa1" Relationship="Self.FK_Adisyon_Masa1" FromRole="Adisyon" ToRole="Masa" />
+          <NavigationProperty Name="OdemeTip" Relationship="Self.FK_Adisyon_OdemeTip" FromRole="Adisyon" ToRole="OdemeTip" />
+          <NavigationProperty Name="Siparis" Relationship="Self.FK_Siparis_Adisyon" FromRole="Adisyon" ToRole="Siparis" />
+          <NavigationProperty Name="Siparis1" Relationship="Self.FK_Siparis_Adisyon1" FromRole="Adisyon" ToRole="Siparis" />
+        </EntityType>
+        <EntityType Name="Kategori">
+          <Key>
+            <PropertyRef Name="kategoriID" />
+          </Key>
+          <Property Name="kategoriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ustKategoriID" Type="Int32" />
+          <Property Name="altKategoriID" Type="Int32" />
+          <Property Name="icerik" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="stok" Relationship="Self.FK_stok_Kategori" FromRole="Kategori" ToRole="stok" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_Urun_Kategori" FromRole="Kategori" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="Kullanici">
+          <Key>
+            <PropertyRef Name="kullaniciID" />
+          </Key>
+          <Property Name="kullaniciID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adi" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="soyadi" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="eposta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sifre" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="yetki" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kullaniciTC" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="adres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cepTel" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Adisyon" Relationship="Self.FK_Adisyon_Kullanici" FromRole="Kullanici" ToRole="Adisyon" />
+          <NavigationProperty Name="Adisyon1" Relationship="Self.FK_Adisyon_Kullanici1" FromRole="Kullanici" ToRole="Adisyon" />
+        </EntityType>
+        <EntityType Name="Masa">
+          <Key>
+            <PropertyRef Name="masaID" />
+          </Key>
+          <Property Name="masaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kisiSayisi" Type="Int32" Nullable="false" />
+          <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Adisyon" Relationship="Self.FK_Adisyon_Masa" FromRole="Masa" ToRole="Adisyon" />
+          <NavigationProperty Name="Adisyon1" Relationship="Self.FK_Adisyon_Masa1" FromRole="Masa" ToRole="Adisyon" />
+        </EntityType>
+        <EntityType Name="menu">
+          <Key>
+            <PropertyRef Name="menuID" />
+          </Key>
+          <Property Name="menuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="menuAdi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="menuIcerik" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="menuFiyati" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MiktarTur">
+          <Key>
+            <PropertyRef Name="miktarTurID" />
+          </Key>
+          <Property Name="miktarTurID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="icerik" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Siparis" Relationship="Self.FK_Siparis_MiktarTur" FromRole="MiktarTur" ToRole="Siparis" />
+          <NavigationProperty Name="Siparis1" Relationship="Self.FK_Siparis_MiktarTur1" FromRole="MiktarTur" ToRole="Siparis" />
+        </EntityType>
+        <EntityType Name="OdemeTip">
+          <Key>
+            <PropertyRef Name="odemeTipID" />
+          </Key>
+          <Property Name="odemeTipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="icerik" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Adisyon" Relationship="Self.FK_Adisyon_OdemeTip" FromRole="OdemeTip" ToRole="Adisyon" />
+        </EntityType>
+        <EntityType Name="Siparis">
+          <Key>
+            <PropertyRef Name="siparisID" />
+          </Key>
+          <Property Name="siparisID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="adisyonID" Type="Int32" Nullable="false" />
+          <Property Name="urunID" Type="Int32" Nullable="false" />
+          <Property Name="miktar" Type="Int32" Nullable="false" />
+          <Property Name="miktarTurID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Adisyon" Relationship="Self.FK_Siparis_Adisyon" FromRole="Siparis" ToRole="Adisyon" />
+          <NavigationProperty Name="Adisyon1" Relationship="Self.FK_Siparis_Adisyon1" FromRole="Siparis" ToRole="Adisyon" />
+          <NavigationProperty Name="MiktarTur" Relationship="Self.FK_Siparis_MiktarTur" FromRole="Siparis" ToRole="MiktarTur" />
+          <NavigationProperty Name="MiktarTur1" Relationship="Self.FK_Siparis_MiktarTur1" FromRole="Siparis" ToRole="MiktarTur" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_Siparis_Urun" FromRole="Siparis" ToRole="Urun" />
+          <NavigationProperty Name="Urun1" Relationship="Self.FK_Siparis_Urun1" FromRole="Siparis" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="stok">
+          <Key>
+            <PropertyRef Name="stokID" />
+          </Key>
+          <Property Name="stokID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategoriID" Type="Int32" Nullable="false" />
+          <Property Name="ustkategoriID" Type="Int32" Nullable="false" />
+          <Property Name="urunID" Type="Int32" Nullable="false" />
+          <Property Name="miktar" Type="Decimal" Precision="10" Scale="5" Nullable="false" />
+          <Property Name="birim" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="birimFiyat" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="toplamFiyat" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Kategori" Relationship="Self.FK_stok_Kategori" FromRole="stok" ToRole="Kategori" />
+          <NavigationProperty Name="Urun" Relationship="Self.FK_stok_Urun" FromRole="stok" ToRole="Urun" />
+        </EntityType>
+        <EntityType Name="Urun">
+          <Key>
+            <PropertyRef Name="urunID" />
+          </Key>
+          <Property Name="urunID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kategoriID" Type="Int32" Nullable="false" />
+          <Property Name="adi" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fiyat" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Kategori" Relationship="Self.FK_Urun_Kategori" FromRole="Urun" ToRole="Kategori" />
+          <NavigationProperty Name="Siparis" Relationship="Self.FK_Siparis_Urun" FromRole="Urun" ToRole="Siparis" />
+          <NavigationProperty Name="Siparis1" Relationship="Self.FK_Siparis_Urun1" FromRole="Urun" ToRole="Siparis" />
+          <NavigationProperty Name="stok" Relationship="Self.FK_stok_Urun" FromRole="Urun" ToRole="stok" />
+        </EntityType>
+        <Association Name="FK_Adisyon_Kullanici">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Adisyon" Type="Self.Adisyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="kullaniciID" />
+            </Principal>
+            <Dependent Role="Adisyon">
+              <PropertyRef Name="kullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adisyon_Kullanici1">
+          <End Role="Kullanici" Type="Self.Kullanici" Multiplicity="1" />
+          <End Role="Adisyon" Type="Self.Adisyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kullanici">
+              <PropertyRef Name="kullaniciID" />
+            </Principal>
+            <Dependent Role="Adisyon">
+              <PropertyRef Name="kullaniciID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adisyon_Masa">
+          <End Role="Masa" Type="Self.Masa" Multiplicity="1" />
+          <End Role="Adisyon" Type="Self.Adisyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Masa">
+              <PropertyRef Name="masaID" />
+            </Principal>
+            <Dependent Role="Adisyon">
+              <PropertyRef Name="masaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adisyon_Masa1">
+          <End Role="Masa" Type="Self.Masa" Multiplicity="1" />
+          <End Role="Adisyon" Type="Self.Adisyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Masa">
+              <PropertyRef Name="masaID" />
+            </Principal>
+            <Dependent Role="Adisyon">
+              <PropertyRef Name="masaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Adisyon_OdemeTip">
+          <End Role="OdemeTip" Type="Self.OdemeTip" Multiplicity="0..1" />
+          <End Role="Adisyon" Type="Self.Adisyon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OdemeTip">
+              <PropertyRef Name="odemeTipID" />
+            </Principal>
+            <Dependent Role="Adisyon">
+              <PropertyRef Name="odemetipID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Adisyon">
+          <End Role="Adisyon" Type="Self.Adisyon" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adisyon">
+              <PropertyRef Name="adisyonID" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="adisyonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Adisyon1">
+          <End Role="Adisyon" Type="Self.Adisyon" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adisyon">
+              <PropertyRef Name="adisyonID" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="adisyonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_Kategori">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+          <End Role="stok" Type="Self.stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="kategoriID" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="kategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Urun_Kategori">
+          <End Role="Kategori" Type="Self.Kategori" Multiplicity="1" />
+          <End Role="Urun" Type="Self.Urun" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kategori">
+              <PropertyRef Name="kategoriID" />
+            </Principal>
+            <Dependent Role="Urun">
+              <PropertyRef Name="kategoriID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_MiktarTur">
+          <End Role="MiktarTur" Type="Self.MiktarTur" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MiktarTur">
+              <PropertyRef Name="miktarTurID" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="miktarTurID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_MiktarTur1">
+          <End Role="MiktarTur" Type="Self.MiktarTur" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MiktarTur">
+              <PropertyRef Name="miktarTurID" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="miktarTurID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Siparis_Urun1">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="1" />
+          <End Role="Siparis" Type="Self.Siparis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="Siparis">
+              <PropertyRef Name="adisyonID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_stok_Urun">
+          <End Role="Urun" Type="Self.Urun" Multiplicity="1" />
+          <End Role="stok" Type="Self.stok" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Urun">
+              <PropertyRef Name="urunID" />
+            </Principal>
+            <Dependent Role="stok">
+              <PropertyRef Name="urunID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="cafeVTContext1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Adisyon" EntityType="Self.Adisyon" />
+          <EntitySet Name="Kategori" EntityType="Self.Kategori" />
+          <EntitySet Name="Kullanici" EntityType="Self.Kullanici" />
+          <EntitySet Name="Masa" EntityType="Self.Masa" />
+          <EntitySet Name="menu" EntityType="Self.menu" />
+          <EntitySet Name="MiktarTur" EntityType="Self.MiktarTur" />
+          <EntitySet Name="OdemeTip" EntityType="Self.OdemeTip" />
+          <EntitySet Name="Siparis" EntityType="Self.Siparis" />
+          <EntitySet Name="stok" EntityType="Self.stok" />
+          <EntitySet Name="Urun" EntityType="Self.Urun" />
+          <AssociationSet Name="FK_Adisyon_Kullanici" Association="Self.FK_Adisyon_Kullanici">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Adisyon" EntitySet="Adisyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adisyon_Kullanici1" Association="Self.FK_Adisyon_Kullanici1">
+            <End Role="Kullanici" EntitySet="Kullanici" />
+            <End Role="Adisyon" EntitySet="Adisyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adisyon_Masa" Association="Self.FK_Adisyon_Masa">
+            <End Role="Masa" EntitySet="Masa" />
+            <End Role="Adisyon" EntitySet="Adisyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adisyon_Masa1" Association="Self.FK_Adisyon_Masa1">
+            <End Role="Masa" EntitySet="Masa" />
+            <End Role="Adisyon" EntitySet="Adisyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Adisyon_OdemeTip" Association="Self.FK_Adisyon_OdemeTip">
+            <End Role="OdemeTip" EntitySet="OdemeTip" />
+            <End Role="Adisyon" EntitySet="Adisyon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Adisyon" Association="Self.FK_Siparis_Adisyon">
+            <End Role="Adisyon" EntitySet="Adisyon" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Adisyon1" Association="Self.FK_Siparis_Adisyon1">
+            <End Role="Adisyon" EntitySet="Adisyon" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_Kategori" Association="Self.FK_stok_Kategori">
+            <End Role="Kategori" EntitySet="Kategori" />
+            <End Role="stok" EntitySet="stok" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Urun_Kategori" Association="Self.FK_Urun_Kategori">
+            <End Role="Kategori" EntitySet="Kategori" />
+            <End Role="Urun" EntitySet="Urun" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_MiktarTur" Association="Self.FK_Siparis_MiktarTur">
+            <End Role="MiktarTur" EntitySet="MiktarTur" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_MiktarTur1" Association="Self.FK_Siparis_MiktarTur1">
+            <End Role="MiktarTur" EntitySet="MiktarTur" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Urun" Association="Self.FK_Siparis_Urun">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Siparis_Urun1" Association="Self.FK_Siparis_Urun1">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="Siparis" EntitySet="Siparis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_stok_Urun" Association="Self.FK_stok_Urun">
+            <End Role="Urun" EntitySet="Urun" />
+            <End Role="stok" EntitySet="stok" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="cafeVTModelStoreContainer" CdmEntityContainer="cafeVTContext1">
+          <EntitySetMapping Name="Adisyon">
+            <EntityTypeMapping TypeName="cafeVTModel.Adisyon">
+              <MappingFragment StoreEntitySet="Adisyon">
+                <ScalarProperty Name="adisyonID" ColumnName="adisyonID" />
+                <ScalarProperty Name="masaID" ColumnName="masaID" />
+                <ScalarProperty Name="kullaniciID" ColumnName="kullaniciID" />
+                <ScalarProperty Name="tarih" ColumnName="tarih" />
+                <ScalarProperty Name="ucret" ColumnName="ucret" />
+                <ScalarProperty Name="odemetipID" ColumnName="odemetipID" />
+                <ScalarProperty Name="acikMi" ColumnName="acikMi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kategori">
+            <EntityTypeMapping TypeName="cafeVTModel.Kategori">
+              <MappingFragment StoreEntitySet="Kategori">
+                <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+                <ScalarProperty Name="ustKategoriID" ColumnName="ustKategoriID" />
+                <ScalarProperty Name="altKategoriID" ColumnName="altKategoriID" />
+                <ScalarProperty Name="icerik" ColumnName="icerik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kullanici">
+            <EntityTypeMapping TypeName="cafeVTModel.Kullanici">
+              <MappingFragment StoreEntitySet="Kullanici">
+                <ScalarProperty Name="kullaniciID" ColumnName="kullaniciID" />
+                <ScalarProperty Name="adi" ColumnName="adi" />
+                <ScalarProperty Name="soyadi" ColumnName="soyadi" />
+                <ScalarProperty Name="eposta" ColumnName="eposta" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+                <ScalarProperty Name="yetki" ColumnName="yetki" />
+                <ScalarProperty Name="kullaniciTC" ColumnName="kullaniciTC" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="cepTel" ColumnName="cepTel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Masa">
+            <EntityTypeMapping TypeName="cafeVTModel.Masa">
+              <MappingFragment StoreEntitySet="Masa">
+                <ScalarProperty Name="masaID" ColumnName="masaID" />
+                <ScalarProperty Name="kisiSayisi" ColumnName="kisiSayisi" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menu">
+            <EntityTypeMapping TypeName="cafeVTModel.menu">
+              <MappingFragment StoreEntitySet="menu">
+                <ScalarProperty Name="menuID" ColumnName="menuID" />
+                <ScalarProperty Name="menuAdi" ColumnName="menuAdi" />
+                <ScalarProperty Name="menuIcerik" ColumnName="menuIcerik" />
+                <ScalarProperty Name="menuFiyati" ColumnName="menuFiyati" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MiktarTur">
+            <EntityTypeMapping TypeName="cafeVTModel.MiktarTur">
+              <MappingFragment StoreEntitySet="MiktarTur">
+                <ScalarProperty Name="miktarTurID" ColumnName="miktarTurID" />
+                <ScalarProperty Name="icerik" ColumnName="icerik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OdemeTip">
+            <EntityTypeMapping TypeName="cafeVTModel.OdemeTip">
+              <MappingFragment StoreEntitySet="OdemeTip">
+                <ScalarProperty Name="odemeTipID" ColumnName="odemeTipID" />
+                <ScalarProperty Name="icerik" ColumnName="icerik" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Siparis">
+            <EntityTypeMapping TypeName="cafeVTModel.Siparis">
+              <MappingFragment StoreEntitySet="Siparis">
+                <ScalarProperty Name="siparisID" ColumnName="siparisID" />
+                <ScalarProperty Name="adisyonID" ColumnName="adisyonID" />
+                <ScalarProperty Name="urunID" ColumnName="urunID" />
+                <ScalarProperty Name="miktar" ColumnName="miktar" />
+                <ScalarProperty Name="miktarTurID" ColumnName="miktarTurID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="stok">
+            <EntityTypeMapping TypeName="cafeVTModel.stok">
+              <MappingFragment StoreEntitySet="stok">
+                <ScalarProperty Name="stokID" ColumnName="stokID" />
+                <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+                <ScalarProperty Name="ustkategoriID" ColumnName="ustkategoriID" />
+                <ScalarProperty Name="urunID" ColumnName="urunID" />
+                <ScalarProperty Name="miktar" ColumnName="miktar" />
+                <ScalarProperty Name="birim" ColumnName="birim" />
+                <ScalarProperty Name="birimFiyat" ColumnName="birimFiyat" />
+                <ScalarProperty Name="toplamFiyat" ColumnName="toplamFiyat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Urun">
+            <EntityTypeMapping TypeName="cafeVTModel.Urun">
+              <MappingFragment StoreEntitySet="Urun">
+                <ScalarProperty Name="urunID" ColumnName="urunID" />
+                <ScalarProperty Name="kategoriID" ColumnName="kategoriID" />
+                <ScalarProperty Name="adi" ColumnName="adi" />
+                <ScalarProperty Name="fiyat" ColumnName="fiyat" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
